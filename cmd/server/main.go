@@ -16,7 +16,7 @@ import (
 func getAllBlogs(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("GET getAllBlogs\n")
 
-    homepageTemplate, err := template.ParseFiles("static/index.html")
+    homepageTemplate, err := template.ParseFiles("web/templates/index.html")
 
     if err != nil {
         panic("Problem reading homepage template")
@@ -44,7 +44,7 @@ func getBlog(w http.ResponseWriter, r *http.Request) {
     }
 
     html := string(markdown.ToHtml(data))
-    blogTemplate, err := template.ParseFiles("static/blog.html")
+    blogTemplate, err := template.ParseFiles("web/templates/blog.html")
 
     if err != nil {
         panic("Problem reading blog template")
@@ -59,7 +59,10 @@ func main() {
 	http.HandleFunc("/", getAllBlogs)
 	http.HandleFunc("/blog/", getBlog)
 
-	fmt.Println("Starting web server on port 8080...")
+    static := http.FileServer(http.Dir("web/static"))
+    http.Handle("/static/", http.StripPrefix("/static/", static))
+
+    fmt.Println("Starting web server on https://localhost:8080")
 	fmt.Println(http.ListenAndServe(":8080", nil))
 }
 
