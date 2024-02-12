@@ -3,15 +3,28 @@
     <head>
         <meta charset="UTF-8" />
         <title>Zachie Blog</title>
+        <link rel="stylesheet" href="/static/style.css" />
         <style>
              main {
                  margin: 0 auto;
-                 width: 80%;
+                 max-width: 800px;
+             }
+
+             #back {
+                 color: #687bc8;
+                 font-family: 'Arial', sans-serif;
+                 text-decoration: none;
+             }
+
+             #back:hover {
+                 text-decoration: underline;
              }
         </style>
     </head>
     <body>
         <main>
+            <a id="back" href="/">Back</a>
+
             {{ . }}
         </main>
     </body>
