@@ -3,11 +3,22 @@
     <head>
         <meta charset="UTF-8" />
         <title>Zachie Blog</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="static/style.css" />
     </head>
     <body>
-        <h1>Welcome to Zachie's Blog</h1>
-
-
+        <main>
+            <nav>
+                <a href="/">index</a>
+                <strong style="float: right;">zach gharst</strong>
+            </nav>
+            <h1>Index</h1>
+            <ul>
+            {{ range . }}
+                <li>
+                    <a href="/blog/{{ .Url }}">{{ .Title }}</a>
+                </li>
+            {{ end }}
+            </ul>
+        </main>
     </body>
 </html>
